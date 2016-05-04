@@ -3,18 +3,19 @@ class ArtistsController < ApplicationController
 
   # GET /artists
   # GET /artists.json
-  def index
+
+  expose(:artist)
+  expose(:artists)
+  expose(:artist_form){ ArtistForm.new(params[:name]) }
+
+  def artists
     @artists = Artist.all
   end
 
-  # GET /artists/1
-  # GET /artists/1.json
-  def show
-  end
 
   # GET /artists/new
   def new
-    @artist = Artist.new
+    artist = Artist.new
   end
 
   # GET /artists/1/edit
@@ -24,15 +25,14 @@ class ArtistsController < ApplicationController
   # POST /artists
   # POST /artists.json
   def create
-    @artist = Artist.new(artist_params)
-
+    artist_form = ArtistForm.new(params[:name])
     respond_to do |format|
-      if @artist.save
-        format.html { redirect_to @artist, notice: 'Artist was successfully created.' }
-        format.json { render :show, status: :created, location: @artist }
+      if artist_form.save
+        format.html { redirect_to artist, notice: 'Artist was successfully created.' }
+        format.json { render :show, status: :created, location: artist }
       else
         format.html { render :new }
-        format.json { render json: @artist.errors, status: :unprocessable_entity }
+        format.json { render json: artist.errors, status: :unprocessable_entity }
       end
     end
   end

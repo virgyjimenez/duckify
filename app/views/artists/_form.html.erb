@@ -1,10 +1,10 @@
-<%= form_for(@artist) do |f| %>
-  <% if @artist.errors.any? %>
+<%= form_for(artist_form, url: artists_path, method: :post) do |f| %>
+  <% if artist_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@artist.errors.count, "error") %> prohibited this artist from being saved:</h2>
+      <h2><%= pluralize(artist_form.errors.count, "error") %> prohibited this artist from being saved:</h2>
 
       <ul>
-      <% @artist.errors.full_messages.each do |message| %>
+      <% artist_form.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
