@@ -1,0 +1,16 @@
+#index
+  h1#header Artistas
+  = form_for search_form, as: :search, url: artists_path, method: :get do |form|
+    = form.text_field :name
+    = form.submit 'Buscar'
+  table
+    thead
+      tr
+        th Name
+        th
+        th
+        th
+    tbody
+      = render 'list'
+  br
+  = link_to 'Nuevo Usuario', new_artist_path

@@ -1,0 +1,5 @@
+- artists.each do |artist|
+  tr
+    td = artist.name
+    td = link_to 'Mostrar', artist
+    td = link_to 'Eliminar', artist, data: {:confirm => 'Está usted seguro?'}, :method => :delete
